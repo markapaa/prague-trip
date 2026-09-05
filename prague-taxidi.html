@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Πράγα · 4–8 Δεκεμβρίου</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0d1526;
+    --navy-900:#152238;
+    --navy-800:#1e304c;
+    --gold-500:#c6a154;
+    --gold-300:#e6d3a0;
+    --wine-600:#8a3a44;
+    --parchment:#f4efe3;
+    --ink-900:#221f1a;
+    --stone-500:#7b7364;
+    --hairline: rgba(34,31,26,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink-900);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+  }
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(198,161,84,0.14), transparent 55%),
+      var(--navy-950);
+    color:var(--parchment);
+    padding:6.5rem 1.5rem 4rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:880px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .hero-eyebrow{
+    font-size:0.95rem;
+    color:var(--gold-300);
+    letter-spacing:0.02em;
+    margin-bottom:1.1rem;
+  }
+  .hero h1{
+    font-style:italic;
+    font-size:clamp(3.2rem, 10vw, 6.4rem);
+    line-height:0.95;
+    color:var(--parchment);
+    letter-spacing:-0.01em;
+  }
+  .hero p.sub{
+    margin-top:1.4rem;
+    max-width:34ch;
+    font-size:1.1rem;
+    color:#c7cedd;
+  }
+  .skyline{
+    position:absolute;
+    bottom:-2px;
+    left:0;
+    width:100%;
+    height:auto;
+    z-index:1;
+    opacity:0.9;
+  }
+
+  /* ---------- QUICK FACTS ---------- */
+  .facts{
+    background:var(--navy-900);
+    color:var(--parchment);
+    border-top:1px solid rgba(230,211,160,0.18);
+  }
+  .facts-inner{
+    max-width:880px;
+    margin:0 auto;
+    padding:1.4rem 1.5rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.6rem 2.4rem;
+    font-size:0.94rem;
+  }
+  .facts-inner div span.label{
+    display:block;
+    color:var(--gold-300);
+    font-size:0.78rem;
+    margin-bottom:0.15rem;
+  }
+
+  /* ---------- DAY NAV ---------- */
+  .daynav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(244,239,227,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .daynav-inner{
+    max-width:880px;
+    margin:0 auto;
+    display:flex;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .daynav-inner::-webkit-scrollbar{display:none;}
+  .daynav a{
+    flex:0 0 auto;
+    padding:0.95rem 1.15rem;
+    text-decoration:none;
+    font-size:0.88rem;
+    color:var(--stone-500);
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+    transition:color 0.2s, border-color 0.2s;
+  }
+  .daynav a .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold-500);
+    margin-right:0.4rem;
+  }
+  .daynav a.active{
+    color:var(--ink-900);
+    border-bottom-color:var(--gold-500);
+  }
+
+  /* ---------- DAY SECTIONS ---------- */
+  .day{
+    max-width:880px;
+    margin:0 auto;
+    padding:4.5rem 1.5rem 1rem;
+    scroll-margin-top:56px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .day:last-of-type{border-bottom:none;}
+  .day-head{
+    display:flex;
+    align-items:baseline;
+    gap:1.3rem;
+    margin-bottom:0.6rem;
+  }
+  .day-head .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:3.4rem;
+    color:var(--gold-500);
+    line-height:1;
+  }
+  .day-head .date{
+    font-size:0.92rem;
+    color:var(--stone-500);
+  }
+  .day h2.theme{
+    font-size:clamp(1.6rem, 4vw, 2.15rem);
+    margin:0.3rem 0 2.2rem;
+    max-width:22ch;
+  }
+  .icon{
+    width:34px;
+    height:34px;
+    stroke:var(--gold-500);
+    fill:none;
+    stroke-width:1.4;
+    flex-shrink:0;
+    margin-top:0.2rem;
+  }
+
+  .note{
+    display:flex;
+    gap:0.7rem;
+    align-items:flex-start;
+    font-style:italic;
+    font-size:0.92rem;
+    color:var(--stone-500);
+    border-left:2px solid var(--gold-500);
+    padding:0.15rem 0 0.15rem 1rem;
+    margin-bottom:2.2rem;
+    max-width:56ch;
+  }
+
+  .block{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:1.4rem;
+    padding:1.6rem 0;
+    border-top:1px solid var(--hairline);
+  }
+  .block:first-of-type{border-top:1px solid var(--hairline);}
+  .block .time{
+    font-size:0.88rem;
+    color:var(--gold-500);
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    padding-top:0.1rem;
+  }
+  .block .content h3{
+    font-size:1.15rem;
+    font-weight:500;
+    margin-bottom:0.5rem;
+  }
+  .block .content p{
+    margin:0 0 0.6rem;
+    max-width:58ch;
+    color:#3a3630;
+  }
+  .stops{
+    margin:0.8rem 0 0;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:0.85rem;
+  }
+  .stops li{
+    padding-left:1rem;
+    border-left:1px solid var(--hairline);
+    max-width:58ch;
+  }
+  .stops li strong{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.02rem;
+    margin-bottom:0.15rem;
+  }
+  .stops li span{
+    color:#3a3630;
+    font-size:0.96rem;
+  }
+
+  .dine{
+    border-top:1px solid var(--hairline);
+    padding:1.6rem 0;
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:1.4rem;
+  }
+  .dine .time{
+    font-size:0.88rem;
+    color:var(--wine-600);
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    padding-top:0.1rem;
+  }
+  .dine .content{
+    border-left:2px solid var(--wine-600);
+    padding-left:1rem;
+  }
+  .dine .content h3{
+    font-size:1.1rem;
+    font-weight:500;
+    margin-bottom:0.4rem;
+    color:var(--wine-600);
+  }
+  .dine .content p{
+    margin:0;
+    max-width:56ch;
+    color:#3a3630;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--navy-950);
+    color:var(--parchment);
+    padding:3.4rem 1.5rem 2.6rem;
+  }
+  .footer-inner{
+    max-width:880px;
+    margin:0 auto;
+  }
+  footer h2{
+    font-style:italic;
+    color:var(--gold-300);
+    font-size:1.9rem;
+    margin-bottom:0.8rem;
+  }
+  footer p{
+    max-width:44ch;
+    color:#c7cedd;
+    font-size:0.98rem;
+  }
+
+  @media (max-width:600px){
+    .block, .dine{grid-template-columns:1fr; gap:0.4rem;}
+    .day{padding:3.2rem 1.2rem 0.5rem;}
+    .hero{padding:4.5rem 1.2rem 3rem;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Ταξίδι · 4 – 8 Δεκεμβρίου</div>
+    <h1>Πράγα</h1>
+    <p class="sub">Πέντε μέρες ανάμεσα σε γοτθικά καμπαναριά, χριστουγεννιάτικες αγορές και τον θρύλο του Γκόλεμ.</p>
+  </div>
+  <svg class="skyline" viewBox="0 0 900 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,90 L0,55 L20,55 L20,40 L30,40 L30,55 L60,55 L60,20 L68,10 L76,20 L76,55 L110,55 L110,45 L120,45 L120,30 L128,15 L136,30 L136,45 L150,45 L150,55 L190,55 L190,35 L198,35 L198,20 L206,35 L206,35 L214,35 L214,55 L250,55 L250,42 L260,42 L260,25 L270,10 L280,25 L280,42 L292,42 L292,55 L340,55 L340,48 L352,48 L352,58 L400,58 L400,38 L410,38 L410,18 L420,5 L430,18 L430,38 L440,38 L440,58 L490,58 L490,45 L500,45 L500,55 L540,55 L540,30 L548,30 L548,15 L556,30 L556,30 L564,30 L564,55 L610,55 L610,48 L620,48 L620,60 L670,60 L670,40 L680,40 L680,22 L690,8 L700,22 L700,40 L710,40 L710,60 L760,60 L760,50 L772,50 L772,62 L820,62 L820,45 L830,45 L830,58 L900,58 L900,90 Z" fill="#152238" stroke="none"/>
+  </svg>
+</section>
+
+<div class="facts">
+  <div class="facts-inner">
+    <div><span class="label">Διαμονή</span>Zborovská 14</div>
+    <div><span class="label">Άφιξη</span>Παρασκευή 4/12, μεσημέρι</div>
+    <div><span class="label">Αναχώρηση</span>Τρίτη 8/12, πτήση 14:00</div>
+  </div>
+</div>
+
+<nav class="daynav" id="daynav">
+  <div class="daynav-inner">
+    <a href="#day1" class="active"><span class="num">1</span>Παλιά Πόλη</a>
+    <a href="#day2"><span class="num">2</span>Κάστρο & Mikuláš</a>
+    <a href="#day3"><span class="num">3</span>Επιστήμη</a>
+    <a href="#day4"><span class="num">4</span>Josefov & Vyšehrad</a>
+    <a href="#day5"><span class="num">5</span>Αναχώρηση</a>
+  </div>
+</nav>
+
+<!-- DAY 1 -->
+<section class="day" id="day1">
+  <div class="day-head">
+    <span class="num">01</span>
+    <span class="date">Παρασκευή, 4 Δεκεμβρίου</span>
+  </div>
+  <h2 class="theme">Η καρδιά της ιστορίας</h2>
+
+  <div class="block">
+    <div class="time">13:00–14:30</div>
+    <div class="content">
+      <h3>Άφιξη & τακτοποίηση</h3>
+      <p>Άφιξη στο αεροδρόμιο, μετάβαση στο διαμέρισμα στη Zborovská 14 και τακτοποίηση.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">15:00–17:30</div>
+    <div class="content">
+      <h3>Παλιά Πόλη, με τα πόδια</h3>
+      <p>Περπατήστε τη γέφυρα Legií προς το κέντρο της Παλιάς Πόλης.</p>
+      <ul class="stops">
+        <li><strong>Πλατεία Παλιάς Πόλης</strong><span>Δημιουργήθηκε τον 12ο αιώνα, σταυροδρόμι εμπόρων. Εκεί βρίσκεται το μνημείο του Jan Hus, έργο Αρτ Νουβό του 1915.</span></li>
+        <li><strong>Αστρονομικό Ρολόι (Orloj)</strong><span>Στον πύργο του παλιού δημαρχείου, 600 ετών. Στην ακριβή ώρα ξεπροβάλλουν οι 12 Απόστολοι, ενώ ο μηχανισμός δείχνει και τη θέση του Ήλιου και της Σελήνης.</span></li>
+        <li><strong>Church of Our Lady before Týn</strong><span>Γοτθική εκκλησία με δωρεάν είσοδο (εκτός λειτουργίας). Φιλοξενεί το παλαιότερο εκκλησιαστικό όργανο της Πράγας, από το 1673.</span></li>
+        <li><strong>Αγορά Havel (Havelské tržiště)</strong><span>Παραδοσιακή αγορά με ιστορία που πάει πίσω στο 1200. Ιδανική για μια γρήγορη ματιά σε τοπικά προϊόντα.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">18:00–20:00</div>
+    <div class="content">
+      <h3>Χριστουγεννιάτικη αγορά</h3>
+      <p>Βόλτα στην αγορά της Πλατείας Παλαιάς Πόλης για street food, Trdelník (γλυκό καμινάδα) και ζεστό κρασί.</p>
+    </div>
+  </div>
+
+  <div class="dine">
+    <div class="time">20:00</div>
+    <div class="content">
+      <h3>U Pavouka</h3>
+      <p>Μεσαιωνικό ταβερνείο (απαιτείται κράτηση) — φαγοπότι 5 πιάτων με μπύρα, φωτιές και ξιφομάχους.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section class="day" id="day2">
+  <div class="day-head">
+    <span class="num">02</span>
+    <span class="date">Σάββατο, 5 Δεκεμβρίου</span>
+  </div>
+  <h2 class="theme">Κάστρο & η νύχτα του Mikuláš</h2>
+
+  <div class="note">Το Εβραϊκό Μουσείο είναι κλειστό το Σάββατο — το αφήνουμε για τη Δευτέρα.</div>
+
+  <div class="block">
+    <div class="time">09:30–13:30</div>
+    <div class="content">
+      <h3>Κάστρο της Πράγας (Pražský hrad)</h3>
+      <p>Ανοιχτό καθημερινά (οι εσωτερικοί χώροι τον χειμώνα 09:00–16:00). Καθεδρικός του Αγίου Βίτου, Παλιό Βασιλικό Ανάκτορο και Χρυσό Σοκάκι, όπου έζησε για λίγο ο Κάφκα.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">13:30–15:30</div>
+    <div class="content">
+      <h3>Malá Strana & Μουσείο Kafka</h3>
+      <p>Κατηφορίστε στη Malá Strana και σταματήστε στο Μουσείο Franz Kafka (ανοιχτό καθημερινά 10:00–18:00) για την τέχνη και τη λογοτεχνία της πόλης.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">16:00–18:00</div>
+    <div class="content">
+      <h3>Γέφυρα του Καρόλου</h3>
+      <p>Περπάτημα στη γέφυρα την ώρα που δύει ο ήλιος.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">18:00 →</div>
+    <div class="content">
+      <h3>Η γιορτή του Mikuláš</h3>
+      <p>Από το σούρουπο, οι δρόμοι γύρω από την Παλιά Πόλη και τη Malá Strana γεμίζουν με τριάδες: τον Άγιο Νικόλαο, έναν Άγγελο και έναν Δαίμονα (Krampus) — ένα από τα πιο έντονα έθιμα της κεντρικής Ευρώπης.</p>
+    </div>
+  </div>
+
+  <div class="dine">
+    <div class="time">Βράδυ</div>
+    <div class="content">
+      <h3>U Krále Brabantského</h3>
+      <p>Στη Malá Strana — ένα από τα παλαιότερα και πιο «σκοτεινά» ταβερνεία, αγαπημένο στέκι αλχημιστών τον Μεσαίωνα.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section class="day" id="day3">
+  <div class="day-head">
+    <span class="num">03</span>
+    <span class="date">Κυριακή, 6 Δεκεμβρίου</span>
+  </div>
+  <h2 class="theme">Επιστήμη, αστρονομία & εφευρέσεις</h2>
+
+  <div class="note">Το Εθνικό Τεχνικό Μουσείο είναι κλειστό τη Δευτέρα — το επισκεπτόμαστε σήμερα.</div>
+
+  <div class="block">
+    <div class="time">10:00–13:30</div>
+    <div class="content">
+      <h3>Εθνικό Τεχνικό Μουσείο</h3>
+      <p>Στην περιοχή Letná, ανοιχτό Τρίτη–Κυριακή 09:00–18:00. Εκθέσεις αστρονομίας, μηχανικής, αρχιτεκτονικής και ιστορικών οχημάτων.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">14:30–16:00</div>
+    <div class="content">
+      <h3>Klementinum</h3>
+      <p>Η Εθνική Βιβλιοθήκη, σε πρώην κολέγιο των Ιησουιτών — η είσοδος γίνεται μόνο με ξενάγηση. Μπαρόκ βιβλιοθήκη του 1727 με ιστορικές υδρόγειες σφαίρες, τοιχογραφίες αφιερωμένες στις τέχνες και τις επιστήμες, και το Meridian Hall με αστρονομικά όργανα του 18ου αιώνα και ηλιακό ρολόι.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">16:30–18:30</div>
+    <div class="content">
+      <h3>Εθνικό Μουσείο</h3>
+      <p>Περπατήστε ως την πλατεία Wenceslas (ανοιχτό 10:00–18:00) — φυσική ιστορία και επιστήμες.</p>
+    </div>
+  </div>
+
+  <div class="dine">
+    <div class="time">Βράδυ</div>
+    <div class="content">
+      <h3>Αγορά της Πλατείας Ειρήνης</h3>
+      <p>Náměstí Míru — λιγότερο τουριστική, κυρίως με ντόπιους, για ένα πιο αυθεντικό δείπνο.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 4 -->
+<section class="day" id="day4">
+  <div class="day-head">
+    <span class="num">04</span>
+    <span class="date">Δευτέρα, 7 Δεκεμβρίου</span>
+  </div>
+  <h2 class="theme">Ιστορία, μυστικισμός & κουλτούρα</h2>
+
+  <div class="note">Το Εβραϊκό Μουσείο είναι ανοιχτό τις Δευτέρες, σε αντίθεση με άλλα μουσεία.</div>
+
+  <div class="block">
+    <div class="time">10:00–13:30</div>
+    <div class="content">
+      <h3>Josefov — η Εβραϊκή συνοικία</h3>
+      <p>Χειμερινό ωράριο 09:00–16:30. Ισπανική Συναγωγή, Παλαιά-Νέα Συναγωγή — όπου σύμφωνα με τον θρύλο κρύβεται το Γκόλεμ της Πράγας — και το Παλιό Εβραϊκό Νεκροταφείο.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">14:30–16:30</div>
+    <div class="content">
+      <h3>Κάστρο Vyšehrad</h3>
+      <p>Σε έναν βράχο πάνω από τον ποταμό, ελάχιστα τουριστικό. Το κοιμητήριό του είναι το πάνθεον της τσέχικης τέχνης, μουσικής και επιστήμης.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">17:00</div>
+    <div class="content">
+      <h3>Café Louvre</h3>
+      <p>Λειτουργεί από το 1902 — χώρος συζητήσεων του Άλμπερτ Αϊνστάιν, του Φραντς Κάφκα και άλλων επιστημόνων και φιλοσόφων.</p>
+    </div>
+  </div>
+
+  <div class="dine">
+    <div class="time">Βράδυ</div>
+    <div class="content">
+      <h3>Lokál U Bílé kuželky</h3>
+      <p>Στη Malá Strana — κλασική τσέχικη pub (hospoda) για αυθεντικό γκούλας και ολόφρεσκη Pilsner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 5 -->
+<section class="day" id="day5">
+  <div class="day-head">
+    <span class="num">05</span>
+    <span class="date">Τρίτη, 8 Δεκεμβρίου</span>
+  </div>
+  <h2 class="theme">The river vibe & αναχώρηση</h2>
+
+  <div class="block">
+    <div class="time">09:30–11:30</div>
+    <div class="content">
+      <h3>Dancing House</h3>
+      <p>Το διαμέρισμά σας στη Zborovská είναι πολύ κοντά στο Κτίριο που Χορεύει, ακριβώς απέναντι στο ποτάμι (περάστε τη γέφυρα Jirásek) — το απόλυτο δείγμα σύγχρονης αρχιτεκτονικής. Τελευταίες φωτογραφίες στο ποτάμι, πρωινό σε τοπικό φούρνο, ετοιμασία.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="time">11:30–12:00</div>
+    <div class="content">
+      <h3>Αναχώρηση για το αεροδρόμιο</h3>
+      <p>Η πτήση είναι στις 14:00, οπότε πρέπει να είστε εκεί γύρω στις 12:00.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <h2>Καλό ταξίδι</h2>
+    <p>Πέντε μέρες, μια πόλη, χίλιες ιστορίες — από τον Γκόλεμ ως τον Αϊνστάιν.</p>
+  </div>
+</footer>
+
+<script>
+  const links = document.querySelectorAll('.daynav a');
+  const sections = document.querySelectorAll('.day');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
