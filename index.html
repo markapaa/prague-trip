@@ -990,29 +990,31 @@
     <p class="flight-error" id="flight-error" style="display:none;">Δεν αναγνωρίζω τον κωδικό, ρώτα όποιον έφτιαξε τη σελίδα.</p>
   </div>
 
-  <div class="flight-card" id="flight-card" style="display:none;">
-    <h3 id="flight-person-name"></h3>
-    <div class="flight-fields">
-      <label>Πτήση άφιξης — αριθμός & ώρα
-        <input type="text" id="f-outbound" placeholder="GQ760 · 4/12 10:40 → 12:20">
-      </label>
-      <label>Πτήση επιστροφής — αριθμός & ώρα
-        <input type="text" id="f-return" placeholder="GQ761 · 8/12 14:10 → 17:35">
-      </label>
-      <label>Κωδικός κράτησης (PNR)
-        <input type="text" id="f-pnr" placeholder="8CS685">
-      </label>
-      <label>Θέση / check-in
-        <input type="text" id="f-seat" placeholder="όταν κάνουμε check-in">
-      </label>
-      <label>Σημειώσεις
-        <textarea id="f-notes" placeholder="1 8kg και 1 χειραποσκευή."></textarea>
-      </label>
+<div class="flight-card" id="flight-card" style="display:none;">
+    <h3 id="flight-person-name">Στοιχεία πτήσης — Παρέας</h3>
+    <div class="flight-fields static-flights">
+      <div class="static-field">
+        <span class="field-label">Πτήση άφιξης — αριθμός & ώρα</span>
+        <strong>GQ760 · 4/12 10:40 → 12:20</strong>
+      </div>
+      <div class="static-field">
+        <span class="field-label">Πτήση επιστροφής — αριθμός & ώρα</span>
+        <strong>GQ761 · 8/12 14:10 → 17:35</strong>
+      </div>
+      <div class="static-field">
+        <span class="field-label">Κωδικός κράτησης (PNR)</span>
+        <strong>8CS685</strong>
+      </div>
+      <div class="static-field">
+        <span class="field-label">Θέση / check-in</span>
+        <strong>Θα οριστεί κατά το check-in</strong>
+      </div>
+      <div class="static-field">
+        <span class="field-label">Σημειώσεις</span>
+        <strong>1 χειραποσκευή 8kg & 1 προσωπικό αντικείμενο ανά άτομο</strong>
+      </div>
     </div>
-    <button id="flight-save" type="button">Αποθήκευση</button>
-    <p id="flight-saved-msg">Αποθηκεύτηκε.</p>
   </div>
-</section>
 
 <!-- GENERAL -->
 <section class="day" id="general">
