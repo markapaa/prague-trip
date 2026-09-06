@@ -116,12 +116,55 @@
     margin-bottom:0.15rem;
   }
 
+  /* ---------- AT A GLANCE ---------- */
+  .glance-wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:2.6rem 1.5rem 0.4rem;
+  }
+  .glance-wrap h2{
+    font-style:italic;
+    font-size:1.5rem;
+    margin-bottom:1.1rem;
+  }
+  .glance{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:1px;
+    background:var(--hairline);
+    border:1px solid var(--hairline);
+  }
+  .glance a{
+    background:var(--parchment);
+    padding:1.1rem 0.9rem;
+    text-decoration:none;
+    color:var(--ink-900);
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+    transition:background 0.15s;
+  }
+  .glance a:hover{background:#ebe3d2;}
+  .glance .g-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold-500);
+    font-size:1.2rem;
+  }
+  .glance .g-date{font-size:0.72rem;color:var(--stone-500);}
+  .glance .g-title{font-size:0.88rem;font-weight:600;line-height:1.25;}
+  .glance .g-hi{font-size:0.78rem;color:#3a3630;line-height:1.3;}
+  @media (max-width:700px){
+    .glance{grid-template-columns:repeat(2, 1fr);}
+  }
+
   /* ---------- PRACTICAL PANEL ---------- */
   .practical{
     max-width:880px;
     margin:0 auto;
     padding:3rem 1.5rem 3.4rem;
     border-bottom:1px solid var(--hairline);
+    scroll-margin-top:56px;
   }
   .practical h2{
     font-style:italic;
@@ -130,7 +173,7 @@
   }
   .practical-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
     gap:1.6rem 2.4rem;
   }
   .practical-grid .item h3{
@@ -144,9 +187,6 @@
     font-size:0.95rem;
     color:#3a3630;
     max-width:46ch;
-  }
-  @media (max-width:640px){
-    .practical-grid{grid-template-columns:1fr;}
   }
 
   /* ---------- DAY NAV ---------- */
@@ -260,6 +300,15 @@
     font-size:0.86rem;
     color:var(--wine-600);
     margin-top:0.7rem;
+  }
+  .block .content p.ticket-link{
+    font-size:0.86rem;
+    color:var(--stone-500);
+    margin-top:0.35rem;
+  }
+  .block .content p.ticket-link a{
+    color:var(--wine-600);
+    text-decoration:underline;
   }
   .stops{
     margin:0.8rem 0 0;
@@ -410,6 +459,90 @@
     .wall-form{grid-template-columns:1fr;}
   }
 
+  /* ---------- FLIGHT GATE ---------- */
+  .flight-gate{
+    display:flex;
+    gap:0.6rem;
+    max-width:420px;
+    margin-top:1.2rem;
+    flex-wrap:wrap;
+  }
+  .flight-gate input{
+    flex:1;
+    min-width:180px;
+    padding:0.6rem 0.8rem;
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    font-family:'Work Sans', sans-serif;
+    font-size:0.95rem;
+    background:#fffdf8;
+    color:var(--ink-900);
+  }
+  .flight-gate button{
+    padding:0.6rem 1.2rem;
+    background:var(--navy-950);
+    color:var(--parchment);
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+    font-size:0.9rem;
+  }
+  .flight-gate button:hover{background:var(--navy-800);}
+  .flight-error{
+    width:100%;
+    color:var(--wine-600);
+    font-size:0.86rem;
+    margin:0.4rem 0 0;
+  }
+  .flight-card{
+    margin-top:1.6rem;
+    max-width:520px;
+  }
+  .flight-card h3{
+    font-size:1.15rem;
+    margin-bottom:1.1rem;
+    color:var(--wine-600);
+  }
+  .flight-fields{
+    display:flex;
+    flex-direction:column;
+    gap:0.9rem;
+    margin-bottom:1.2rem;
+  }
+  .flight-fields label{
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+    font-size:0.85rem;
+    color:var(--stone-500);
+  }
+  .flight-fields input, .flight-fields textarea{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.95rem;
+    padding:0.55rem 0.7rem;
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    background:#fffdf8;
+    color:var(--ink-900);
+  }
+  .flight-fields textarea{min-height:3.6rem; resize:vertical;}
+  #flight-save{
+    padding:0.6rem 1.3rem;
+    background:var(--navy-950);
+    color:var(--parchment);
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+    font-size:0.9rem;
+  }
+  #flight-save:hover{background:var(--navy-800);}
+  #flight-saved-msg{
+    font-size:0.85rem;
+    color:var(--moss-600);
+    margin-top:0.6rem;
+    display:none;
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     background:var(--navy-950);
@@ -437,6 +570,7 @@
     .day{padding:3.2rem 1.2rem 0.5rem;}
     .hero{padding:4.5rem 1.2rem 3rem;}
     .practical{padding:2.4rem 1.2rem 2.6rem;}
+    .glance-wrap{padding:2rem 1.2rem 0.2rem;}
   }
 </style>
 </head>
@@ -464,24 +598,72 @@
   </div>
 </div>
 
-<section class="practical">
-  <h2>Πρακτικά</h2>
+<div class="glance-wrap">
+  <h2>Σε μια ματιά</h2>
+  <div class="glance">
+    <a href="#day1">
+      <span class="g-num">1</span>
+      <span class="g-date">Παρ 4/12</span>
+      <span class="g-title">Παλιά Πόλη</span>
+      <span class="g-hi">Orloj, χριστουγεννιάτικη αγορά, μεσαιωνικό δείπνο</span>
+    </a>
+    <a href="#day2">
+      <span class="g-num">2</span>
+      <span class="g-date">Σαβ 5/12</span>
+      <span class="g-title">Κάστρο & Mikuláš</span>
+      <span class="g-hi">Pražský hrad, Γέφυρα Καρόλου, νύχτα του Αγίου Νικολάου</span>
+    </a>
+    <a href="#day3">
+      <span class="g-num">3</span>
+      <span class="g-date">Κυρ 6/12</span>
+      <span class="g-title">Επιστήμη</span>
+      <span class="g-hi">Τεχνικό Μουσείο, Klementinum, Εθνικό Μουσείο</span>
+    </a>
+    <a href="#day4">
+      <span class="g-num">4</span>
+      <span class="g-date">Δευ 7/12</span>
+      <span class="g-title">Josefov & Vyšehrad</span>
+      <span class="g-hi">Εβραϊκή συνοικία, κάστρο Vyšehrad, Café Louvre</span>
+    </a>
+    <a href="#day5">
+      <span class="g-num">5</span>
+      <span class="g-date">Τρι 8/12</span>
+      <span class="g-title">Αναχώρηση</span>
+      <span class="g-hi">Dancing House και το αεροδρόμιο</span>
+    </a>
+  </div>
+</div>
+
+<section class="practical" id="practical">
+  <h2>Πρακτικά για την Τσεχία</h2>
   <div class="practical-grid">
     <div class="item">
-      <h3>Μετακίνηση</h3>
-      <p>Το διαμέρισμα είναι λίγα λεπτά με τα πόδια από την Παλιά Πόλη μέσω της γέφυρας Legií. Για το Κάστρο, το τραμ 22 σταματάει σχεδόν έξω από την είσοδο. Ένα κοινό εισιτήριο DPP καλύπτει μετρό/τραμ/λεωφορεία.</p>
+      <h3>Μετακίνηση από/προς αεροδρόμιο</h3>
+      <p>Το Václav Havel Airport απέχει ~17 χλμ. Trolleybus 59 ή λεωφορείο 100 σας πάνε σε σταθμό μετρό (γραμμή A ή B αντίστοιχα) με ενιαίο εισιτήριο 40 CZK (ισχύει 90 λεπτά σε όλα τα μέσα). Πιο άνετα με αποσκευές: Bolt/Uber ή ταξί από τον επίσημο σταθμό ταξί, ~30-45 λεπτά ανάλογα με την κίνηση.</p>
+    </div>
+    <div class="item">
+      <h3>Νόμισμα</h3>
+      <p>Δεν ισχύει το ευρώ — επίσημο νόμισμα είναι η κορόνα (CZK). Ενδεικτικά 1 € ≈ 24 CZK (ελέγξτε πριν φύγετε, αλλάζει). Κάρτες δεκτές σχεδόν παντού· κρατήστε λίγα μετρητά για αγορές/tips. Καλύτερα ΑΤΜ τραπεζών παρά ανταλλακτήρια, και όταν σας ρωτήσει «πληρωμή σε EUR ή CZK» επιλέγετε πάντα CZK.</p>
     </div>
     <div class="item">
       <h3>Εισιτήρια μουσείων</h3>
-      <p>Τα ενδεικτικά ποσά στο πρόγραμμα είναι από επίσημες πηγές (φθινόπωρο 2026) αλλά αλλάζουν — επιβεβαιώστε πριν κλείσετε. Το Klementinum επισκέπτεται κανείς μόνο με ξενάγηση, οπότε αξίζει να κλειστεί online νωρίτερα.</p>
+      <p>Οι τιμές στο πρόγραμμα είναι ενδεικτικές (φθινόπωρο 2026) και αλλάζουν — επιβεβαιώστε πριν κλείσετε. Τα επίσημα links βρίσκονται κάτω από κάθε αξιοθέατο. Το Klementinum επισκέπτεται κανείς μόνο με ξενάγηση, οπότε αξίζει να κλειστεί online νωρίτερα.</p>
     </div>
     <div class="item">
       <h3>Καιρός</h3>
       <p>Δεκέμβριος στην Πράγα σημαίνει κρύο, πιθανό παγετό και νωρίς σκοτάδι (~16:00) — καλό μπουφάν, στρώσεις, αδιάβροχα παπούτσια για τις πλακόστρωτες πλατείες.</p>
     </div>
     <div class="item">
+      <h3>Φιλοδωρήματα & πρίζες</h3>
+      <p>Το tip δεν είναι υποχρεωτικό — συνήθως στρογγυλοποιούν τον λογαριασμό ή αφήνουν ~10%. Οι πρίζες είναι τύπου E όπως στην Ελλάδα, 230V — δεν χρειάζεστε adapter.</p>
+    </div>
+    <div class="item">
+      <h3>Γλώσσα & έκτακτη ανάγκη</h3>
+      <p>Επίσημη γλώσσα τα Τσέχικα, αλλά τα Αγγλικά καλύπτουν άνετα τις τουριστικές περιοχές. Ευρωπαϊκός αριθμός έκτακτης ανάγκης: 112.</p>
+    </div>
+    <div class="item">
       <h3>Χριστουγεννιάτικες αγορές</h3>
-      <p>Το πρόγραμμα καλύπτει την αγορά της Παλιάς Πόλης και της Náměstí Míru. Αν θέλουμε κι άλλη, υπάρχουν επίσης οι αγορές στην πλατεία Wenceslas και στην αυλή του Κάστρου — προτείνετέ το στον τοίχο ιδεών παρακάτω.</p>
+      <p>Το πρόγραμμα καλύπτει την αγορά της Παλιάς Πόλης και της Náměstí Míru. Υπάρχουν επίσης οι αγορές στην πλατεία Wenceslas και στην αυλή του Κάστρου — προτείνετέ το στον τοίχο ιδεών.</p>
     </div>
   </div>
 </section>
@@ -493,6 +675,7 @@
     <a href="#day3"><span class="num">3</span>Επιστήμη</a>
     <a href="#day4"><span class="num">4</span>Josefov & Vyšehrad</a>
     <a href="#day5"><span class="num">5</span>Αναχώρηση</a>
+    <a href="#flights"><span class="num">✈</span>Πτήσεις</a>
     <a href="#general"><span class="num">+</span>Γενικά</a>
   </div>
 </nav>
@@ -524,6 +707,7 @@
         <li><strong>Church of Our Lady before Týn</strong><span>Γοτθική εκκλησία με δωρεάν είσοδο (εκτός λειτουργίας). Φιλοξενεί το παλαιότερο εκκλησιαστικό όργανο της Πράγας, από το 1673.</span></li>
         <li><strong>Αγορά Havel (Havelské tržiště)</strong><span>Παραδοσιακή αγορά με ιστορία που πάει πίσω στο 1200. Ιδανική για μια γρήγορη ματιά σε τοπικά προϊόντα.</span></li>
       </ul>
+      <p class="ticket-link">🔗 Πύργος ρολογιού & θέα: <a href="https://www.prague.eu/en" target="_blank" rel="noopener">prague.eu</a></p>
     </div>
   </div>
 
@@ -576,6 +760,7 @@
       <h3>Κάστρο της Πράγας (Pražský hrad)</h3>
       <p>Ανοιχτό καθημερινά (οι εσωτερικοί χώροι τον χειμώνα 09:00–16:00). Καθεδρικός του Αγίου Βίτου, Παλιό Βασιλικό Ανάκτορο και Χρυσό Σοκάκι, όπου έζησε για λίγο ο Κάφκα.</p>
       <p class="ticket">🎫 Κύρια διαδρομή (circuit B): ~450 CZK/άτομο · ενδεικτική τιμή, επιβεβαιώστε πριν</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://www.hrad.cz/en" target="_blank" rel="noopener">hrad.cz/en</a></p>
     </div>
   </div>
 
@@ -584,6 +769,7 @@
     <div class="content">
       <h3>Malá Strana & Μουσείο Kafka</h3>
       <p>Κατηφορίστε στη Malá Strana και σταματήστε στο Μουσείο Franz Kafka (ανοιχτό καθημερινά 10:00–18:00) για την τέχνη και τη λογοτεχνία της πόλης.</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://www.kafkamuseum.cz/en/" target="_blank" rel="noopener">kafkamuseum.cz</a></p>
     </div>
   </div>
 
@@ -643,6 +829,7 @@
     <div class="content">
       <h3>Εθνικό Τεχνικό Μουσείο</h3>
       <p>Στην περιοχή Letná, ανοιχτό Τρίτη–Κυριακή 09:00–18:00. Εκθέσεις αστρονομίας, μηχανικής, αρχιτεκτονικής και ιστορικών οχημάτων.</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://www.ntm.cz/en" target="_blank" rel="noopener">ntm.cz</a></p>
     </div>
   </div>
 
@@ -651,7 +838,8 @@
     <div class="content">
       <h3>Klementinum</h3>
       <p>Η Εθνική Βιβλιοθήκη, σε πρώην κολέγιο των Ιησουιτών — η είσοδος γίνεται μόνο με ξενάγηση. Μπαρόκ βιβλιοθήκη του 1727 με ιστορικές υδρόγειες σφαίρες, τοιχογραφίες αφιερωμένες στις τέχνες και τις επιστήμες, και το Meridian Hall με αστρονομικά όργανα του 18ου αιώνα και ηλιακό ρολόι.</p>
-      <p class="ticket">🎫 Οι ξεναγήσεις γεμίζουν νωρίς — κλείστε τη θέση online πριν το ταξίδι.</p>
+      <p class="ticket">🎫 Ενδεικτικά ~300 CZK ενήλικες / ~200 CZK φοιτητές-σπουδαστές· πρωινές ξεναγήσεις με έκπτωση 50%</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://klementinum.com/en/" target="_blank" rel="noopener">klementinum.com</a> · κρατήσεις μέσω <a href="https://www.prague.eu/en" target="_blank" rel="noopener">prague.eu</a></p>
     </div>
   </div>
 
@@ -660,6 +848,7 @@
     <div class="content">
       <h3>Εθνικό Μουσείο</h3>
       <p>Περπατήστε ως την πλατεία Wenceslas (ανοιχτό 10:00–18:00) — φυσική ιστορία και επιστήμες.</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://www.nm.cz/en" target="_blank" rel="noopener">nm.cz</a></p>
     </div>
   </div>
 
@@ -703,7 +892,8 @@
     <div class="content">
       <h3>Josefov — η Εβραϊκή συνοικία</h3>
       <p>Χειμερινό ωράριο 09:00–16:30. Ισπανική Συναγωγή, Παλαιά-Νέα Συναγωγή — όπου σύμφωνα με τον θρύλο κρύβεται το Γκόλεμ της Πράγας — και το Παλιό Εβραϊκό Νεκροταφείο.</p>
-      <p class="ticket">🎫 Εισιτήριο «Prague Jewish Town»: ~600 CZK ενήλικες / ~400 CZK φοιτητές, ισχύει 3 μέρες · ενδεικτική τιμή</p>
+      <p class="ticket">🎫 Εισιτήριο «Prague Jewish Town»: ~600 CZK ενήλικες / ~400 CZK φοιτητές (ισχύει 3 μέρες) · ενδεικτική τιμή</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://www.jewishmuseum.cz/en/visit/admission/" target="_blank" rel="noopener">jewishmuseum.cz</a></p>
     </div>
   </div>
 
@@ -712,6 +902,7 @@
     <div class="content">
       <h3>Κάστρο Vyšehrad</h3>
       <p>Σε έναν βράχο πάνω από τον ποταμό, ελάχιστα τουριστικό. Το κοιμητήριό του είναι το πάνθεον της τσέχικης τέχνης, μουσικής και επιστήμης.</p>
+      <p class="ticket-link">🔗 Επίσημο site: <a href="https://www.praha-vysehrad.cz/en/" target="_blank" rel="noopener">praha-vysehrad.cz</a></p>
     </div>
   </div>
 
@@ -789,6 +980,46 @@
   </div>
 </section>
 
+<!-- FLIGHTS (personal, code-gated) -->
+<section class="day" id="flights">
+  <div class="day-head">
+    <span class="num">✈</span>
+    <span class="date">Προσωπικά στοιχεία</span>
+  </div>
+  <h2 class="theme">Στοιχεία πτήσης</h2>
+  <p style="max-width:56ch;color:#3a3630;margin-bottom:0.4rem;">Κάθε άτομο βλέπει και συμπληρώνει μόνο τα δικά του στοιχεία, με τον προσωπικό του κωδικό.</p>
+  <p style="max-width:56ch;color:var(--stone-500);font-size:0.86rem;margin-bottom:1.6rem;">Σημείωση: ο κωδικός είναι απλή διάκριση ανάμεσα στην παρέα, όχι πραγματική ασφάλεια — μην ανεβάσετε την ιστοσελίδα κάπου δημόσια αν σας νοιάζει η ιδιωτικότητα των στοιχείων.</p>
+
+  <div class="flight-gate" id="flight-gate">
+    <input type="text" id="flight-code" placeholder="Ο κωδικός σου">
+    <button id="flight-unlock" type="button">Είσοδος</button>
+    <p class="flight-error" id="flight-error" style="display:none;">Δεν αναγνωρίζω αυτόν τον κωδικό — ρώτα όποιον έφτιαξε τη σελίδα.</p>
+  </div>
+
+  <div class="flight-card" id="flight-card" style="display:none;">
+    <h3 id="flight-person-name"></h3>
+    <div class="flight-fields">
+      <label>Πτήση άφιξης — αριθμός & ώρα
+        <input type="text" id="f-outbound" placeholder="π.χ. FR1234 · 4/12 10:40 → 13:05">
+      </label>
+      <label>Πτήση επιστροφής — αριθμός & ώρα
+        <input type="text" id="f-return" placeholder="π.χ. FR5678 · 8/12 14:00 → 16:30">
+      </label>
+      <label>Κωδικός κράτησης (PNR)
+        <input type="text" id="f-pnr" placeholder="π.χ. AB12CD">
+      </label>
+      <label>Θέση / check-in
+        <input type="text" id="f-seat" placeholder="προαιρετικό">
+      </label>
+      <label>Σημειώσεις
+        <textarea id="f-notes" placeholder="αποσκευές, online check-in, κτλ."></textarea>
+      </label>
+    </div>
+    <button id="flight-save" type="button">Αποθήκευση</button>
+    <p id="flight-saved-msg">Αποθηκεύτηκε.</p>
+  </div>
+</section>
+
 <!-- GENERAL -->
 <section class="day" id="general">
   <div class="day-head">
@@ -836,7 +1067,7 @@
   }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
   sections.forEach(s => obs.observe(s));
 
-  // ---------- collaborative wall ----------
+  // ---------- shared storage helper ----------
   const hasStorage = (typeof window !== 'undefined') && !!window.storage;
   if (!hasStorage) { document.body.classList.add('no-storage'); }
   const localFallback = {};
@@ -847,6 +1078,7 @@
     return d.innerHTML;
   }
 
+  // ---------- collaborative wall ----------
   const STATUS_LABEL = { idea: '💡 Ιδέα', todo: '📌 Να κλειστεί', done: '✅ Κλεισμένο' };
 
   async function getNotes(day){
@@ -908,6 +1140,62 @@
       form.querySelector('.wall-text').value = '';
     });
     setInterval(function(){ refreshDay(day); }, 6000);
+  });
+
+  // ---------- personal flight details (code-gated) ----------
+  // Άλλαξε εδώ τα ονόματα και βάλε τον δικό σου κωδικό για κάθε άτομο.
+  const FLIGHT_CODES = {
+    'PRAHA1': 'Άτομο 1',
+    'PRAHA2': 'Άτομο 2',
+    'PRAHA3': 'Άτομο 3',
+    'PRAHA4': 'Άτομο 4'
+  };
+
+  document.getElementById('flight-unlock').addEventListener('click', async function(){
+    const codeInput = document.getElementById('flight-code');
+    const code = codeInput.value.trim().toUpperCase();
+    const name = FLIGHT_CODES[code];
+    const err = document.getElementById('flight-error');
+    if (!name){
+      err.style.display = 'block';
+      return;
+    }
+    err.style.display = 'none';
+    document.getElementById('flight-gate').style.display = 'none';
+    const card = document.getElementById('flight-card');
+    card.style.display = 'block';
+    document.getElementById('flight-person-name').textContent = 'Στοιχεία πτήσης — ' + name;
+
+    let data = {};
+    if (hasStorage) {
+      try {
+        const res = await window.storage.get('flight:' + code, true);
+        data = (res && res.value) ? JSON.parse(res.value) : {};
+      } catch (e) { data = {}; }
+    }
+    document.getElementById('f-outbound').value = data.outbound || '';
+    document.getElementById('f-return').value = data.ret || '';
+    document.getElementById('f-pnr').value = data.pnr || '';
+    document.getElementById('f-seat').value = data.seat || '';
+    document.getElementById('f-notes').value = data.notes || '';
+
+    document.getElementById('flight-save').addEventListener('click', async function(){
+      const payload = {
+        outbound: document.getElementById('f-outbound').value,
+        ret: document.getElementById('f-return').value,
+        pnr: document.getElementById('f-pnr').value,
+        seat: document.getElementById('f-seat').value,
+        notes: document.getElementById('f-notes').value
+      };
+      if (hasStorage) {
+        try {
+          await window.storage.set('flight:' + code, JSON.stringify(payload), true);
+          const msg = document.getElementById('flight-saved-msg');
+          msg.style.display = 'block';
+          setTimeout(function(){ msg.style.display = 'none'; }, 2500);
+        } catch (e) { /* ignore */ }
+      }
+    });
   });
 </script>
 
